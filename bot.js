@@ -43,18 +43,23 @@ bot.on("guildMemberAdd", member => {
 bot.on('message', msg => {
   // Ne réagis pas si l'auteur du message est un bot
   if (msg.author.bot) return;
-  // Récupère chaque argument dans un tableau (ex : "${PREFIX}cmd lol mdr" => {"${PREFIX}cmd", "lol", "mdr"})
-  const args = msg.content.split(/ +/g);
-  // R2cupère le premier élément (la commande) et assure qu'elle soit en minuscule
-  // ex : {"${PREFIX}CmD", "lol", "mdr"} => {"${PREFIX}cmd"}
-  const cmd = args.shift().toLowerCase();
-	if(cmd === `${PREFIX}ping`){
+  // Ne réagis pas si le préfixe ne se situe pas au début du message
+  if (msg.content.indexOf(PREFIX) !== 0) return;
+
+  // Récupère chaque argument dans un tableau et supprime le préfixe
+  // ex : "${PREFIX}cmd lol mdr" => {"cmd", "lol", "mdr"}
+  const args = msg.content.slice(PREFIX.length).trim().split(/ +/g);
+  // Retire le premier élément (la commande) du tableau et la renvoie sous forme minuscule
+  // ex : args = {"CmD", "lol", "mdr"} ; cmd = {} => args = {lol", "mdr"} ; cmd = "cmd"
+	const cmd = args.shift().toLowerCase();
+	
+	if(cmd === "ping"){
 		msg.reply('pong !').then(sent => {
-			sent.delete({"timeout": 5000});
-			msg.delete({"timeout": 5000});
+			sent.delete({ timeout: 5000 });
+			msg.delete({ timeout: 5000 });
 			});
     }
-    if (cmd === `${PREFIX}react`) {
+    if (cmd === "react") {
         msg.react('✅');
     }
 
