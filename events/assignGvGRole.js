@@ -1,6 +1,7 @@
 module.exports = (client) => {
   const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
   const GvGRole = serverDamnedWolves.roles.get(client.GvGRoleID);
+  const NoGvGRole = serverDamnedWolves.roles.get(client.NoGvGRoleID);
 
 
   // Maybe use setInterval() to determine when to check for date and time ?
@@ -9,20 +10,27 @@ module.exports = (client) => {
 
 
   client.channels.fetch(client.GvGChanelID).then(chan => {
-    chan.messages.fetch().then(msg => {
-      const checkFilter = (reaction) => reaction.emoji.name === '✅';
-      const xFilter = (reaction) => reaction.emoji.name === '❌';
-      const collector = msg.createReactionCollector(checkFilter);
-      collector.on('collect', r => {
+    chan.messages.fetch(/* TODO : get the last EmbedMessage inviting to subscribe to GVG */).then(msg => {
+      msg.reactions.resolve('✅').users.fetch().then( usersCollection => {
         serverDamnedWolves.members.fetch().then(membersCollection => {
           for (m of membersCollection.values()) {
-            if (r.users.some(u => u.id === m.user.id)) {
-              if (!m.roles.find(r => r === omegaRole)) m.roles.add(omegaRole);
+            if (usersCollection.some(u => u.id === m.user.id)) {
+              if (!m.roles.find(r => r === GvGRole)) m.roles.add(GvGRole);
+              if (m.roles.find(r => r === NoGvGRole)) m.roles.remove(NoGvGRole);
             }
           }
-        });
-      });
-      collector.on('end', collected => console.log(`Collected ${collected.size} items`));
+        })
+      })
+      msg.reactions.resolve('❌').users.fetch().then( usersCollection => {
+        serverDamnedWolves.members.fetch().then(membersCollection => {
+          for (m of membersCollection.values()) {
+            if (usersCollection.some(u => u.id === m.user.id)) {
+              if (!m.roles.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
+              if (m.roles.find(r => r === GvGRole)) m.roles.remove(GvGRole);
+            }
+          }
+        })
+      })
     })
   });
 };

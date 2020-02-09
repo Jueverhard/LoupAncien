@@ -1,5 +1,5 @@
 const { Client, Collection } = require("discord.js");
-const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, RulesMsgID, OmegaRoleID, GvGRoleID} = require("./config");
+const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID} = require("./config");
 const client = new Client({ disableEveryone: true });
 client.PREFIX = PREFIX;
 client.DamnedWolvesServerID = DamnedWolvesServerID;
@@ -8,6 +8,7 @@ client.GvGChanelID = GvGChanelID;
 client.RulesMsgID = RulesMsgID;
 client.OmegaRoleID = OmegaRoleID;
 client.GvGRoleID = GvGRoleID;
+client.NoGvGRoleID = NoGvGRoleID;
 
 
 // const omegaRole = client.guild.roles.get('556267036544729090');
@@ -23,6 +24,8 @@ client.commands.set("repeat", require("./commands/repeat"));
 client.on("ready", () => require("./events/ready")(client));
 // Assign Omega role on rules' reading
 client.on("ready", () => require("./events/assignOmegaRole")(client));
+// Assign GvG roles on every Sunday at 10PM
+client.on("ready", () => require("./events/assignGvGRole")(client));
 // Does specific actions in reactions to specific messages
 client.on("message", msg => require("./events/message")(client, msg));
 // Welcome any new member on the server and remind him to look at the rules
