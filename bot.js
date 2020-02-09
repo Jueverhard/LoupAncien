@@ -1,5 +1,5 @@
 const { Client, Collection } = require("discord.js");
-const client = new Client({ disableEveryone: true });
+const client = new Client();
 const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID} = require("./config");
 
 client.PREFIX = PREFIX;
