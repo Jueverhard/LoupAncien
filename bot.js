@@ -1,24 +1,27 @@
 const { Client, Collection } = require("discord.js");
-const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID} = require("./config");
 const client = new Client({ disableEveryone: true });
+const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID} = require("./config");
+
 client.PREFIX = PREFIX;
 client.DamnedWolvesServerID = DamnedWolvesServerID;
 client.RulesChanelID = RulesChanelID;
 client.GvGChanelID = GvGChanelID;
+client.LogsChanelID = LogsChanelID;
 client.RulesMsgID = RulesMsgID;
 client.OmegaRoleID = OmegaRoleID;
 client.GvGRoleID = GvGRoleID;
 client.NoGvGRoleID = NoGvGRoleID;
 
 
-// const omegaRole = client.guild.roles.get('556267036544729090');
-// const white_check_mark = client.emojis.find(emoji => emoji.name === '✅');
-
 client.commands = new Collection();
 client.commands.set("ping", require("./commands/ping"));
 client.commands.set("react", require("./commands/react"));
 client.commands.set("refresh", require("./commands/refresh"));
 client.commands.set("repeat", require("./commands/repeat"));
+// Send an MessageEmbed to ask members whether they want to do GvG
+client.commands.set("gvgquestion", require("./commands/gvgquestion"));
+// Look at the right EmbedMessage to tell who want to fight and who do not
+client.commands.set("gvganswer", require("./commands/gvganswer"));
 
 // Let us know once the client is up and running
 client.on("ready", () => require("./events/ready")(client));
