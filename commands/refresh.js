@@ -1,14 +1,12 @@
-const { DamnedWolvesServerID, RulesChanelId, RulesMsgId, OmegaRoleID } = require("../config");
-
 module.exports = (client, message, args) => {
-  const serverDamnedWolves = client.guilds.resolve(DamnedWolvesServerID);
-  const omegaRole = serverDamnedWolves.roles.get(OmegaRoleID);
+  const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
+  const omegaRole = serverDamnedWolves.roles.get(client.OmegaRoleID);
 
   message.delete({ timeout: 3000});
 
   if (args[0] === "omega") {
-    client.channels.fetch(RulesChanelId).then(c => {
-      c.messages.fetch(RulesMsgId).then(m => {
+    client.channels.fetch(client.RulesChanelID).then(c => {
+      c.messages.fetch(client.RulesMsgId).then(m => {
         m.reactions.resolve('✅').users.fetch().then( usersCollection => {
           serverDamnedWolves.members.fetch().then(membersCollection => {
             for (m of membersCollection.values()) {
@@ -21,6 +19,6 @@ module.exports = (client, message, args) => {
       })
     });
   } else if (args[0] === "gvg") {
-
+    // TODO
   }
 };
