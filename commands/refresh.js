@@ -6,7 +6,7 @@ module.exports = (client, message, args) => {
 
   if (args[0] === "omega") {
     client.channels.fetch(client.RulesChanelID).then(c => {
-      c.messages.fetch(client.RulesMsgId).then(m => {
+      c.messages.fetch(client.RulesMsgID).then(m => {
         m.reactions.resolve('✅').users.fetch().then( usersCollection => {
           serverDamnedWolves.members.fetch().then(membersCollection => {
             for (m of membersCollection.values()) {
