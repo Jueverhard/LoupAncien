@@ -17,6 +17,7 @@ client.commands = new Collection();
 client.commands.set("ping", require("./commands/ping"));
 client.commands.set("react", require("./commands/react"));
 client.commands.set("refresh", require("./commands/refresh"));
+client.commands.set("repeat", require("./commands/repeat"));
 
 // Let us know once the client is up and running
 client.on("ready", () => require("./events/ready")(client));
