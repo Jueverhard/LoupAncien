@@ -3,6 +3,8 @@ var moment = require("moment");
 
 module.exports = (client, message) => {
   message.delete({ timeout: 5000 });
+
+  if (message.author.id !== "283298934766436355") return;
   const yesAnswer = '✅';
   const noAnswer = '❌';
   const date1 = moment().add(7, 'days').startOf('isoweek').format('DD/MM');
