@@ -33,7 +33,11 @@ bot.on('messageUpdate', message => {
 			user
 		}*/
 	}
-})
+});
+
+bot.on("guildMemberAdd", member => {
+	member.send(`Salut et bienvenue ${member} ! Pense à jeter un coup d'oeil aux règles :wink:`);
+});
 
 //Envoie une réponse pré-formatée à un message précis, puis supprime la réponse et le message original
 bot.on('message', msg => {
