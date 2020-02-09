@@ -1,22 +1,70 @@
-const Discord = require('discord.js');
-const bot = new Discord.Client();
+const { Client } = require("discord.js");
+const { TOKEN } = require("./config");
+const bot = new Client();
 
-//filtre pour les reactions au message de règles
-const filter = reaction => reaction.emoji.name === ':white_check_mark:';
-const idRegles = 556267176970158091;
+
+// Permet de stocker l'emoji :white_check_mark:
+const white_check_mark = '✅';
+// ID du message de test sur le Serveur de test
+const idTestMessage = '675682402508603422';
+// ID du message de règles sur le serveur des DamnedWolves
+const idRegles = '556267176970158091';
 let idRoleOmega;
+
+const testChannelID = '556237949214392342';
 
 //Permet de savoir lorsque le bot est opérationnel lors de son lancement
 bot.on('ready', function(){
     console.log("I'm there !");
 })
 
-//Envoie une réponse pré-formatée à un message précis
-bot.on('message', message => {
-    if(message.content === '!ping'){
-        message.reply('pong !');
+
+
+//Récupère la liste des membres ayant réagis avec un certain emoji
+bot.on('messageUpdate', message => {
+    console.log(message);
+    if(reaction.message.id == idTestMessage && reaction.emoji.name === '✅') {
+        
+        let reactionUsersPromise = reaction.users.fetch();
+        reactionUsersPromise.then(function(value) {
+            console.log(value);
+        })
+
+        
+        
+        /*for(var user in reactionUsers) {
+            user
+        }*/
     }
-    else if(message.content === 'Omega') {
+})
+
+//Envoie une réponse pré-formatée à un message précis, puis supprime la réponse et le message original
+bot.on('message', message => {
+    console.log(idTestMessage);
+    if(message.content === '!ping'){
+        message.reply('pong !').then(sent => {
+            sent.delete(5000);
+            message.delete(5000);
+        });
+    }
+    if (message.content === '!react') {
+        //message.react(':white_check_mark:');
+        setTimeout(function(value) {
+            console.log(message.reactions);
+        }, 5000)
+    }
+
+
+    // Create a reaction collector
+    /*
+    const filter = (reaction, user) => reaction.emoji.name === '👌' && user.id === 'someID'
+    message.awaitReactions(filter, { time: 15000 })
+        .then(collected => console.log(`Collected ${collected.size} reactions`))
+        .catch(console.error);
+    */
+
+
+    /*else if(message.content === 'Omega') {
         let role = message.guild.roles.find('name','Omega');
         idRoleOmega = role.id;
         if(message.member.roles.find('id', idRoleOmega)){
@@ -31,7 +79,7 @@ bot.on('message', message => {
         message.reply('Ooooh ! En voilà un loup puissant, te voilà promu au rang d\'Alpha !'
             + '\n \n . \n .. \n ... \n .... \n ..... \n ...... \n'
             + 'Ah ah. T\'as cru la vie c\'était un kiwi ' + message.member.user.username + ' ? :smirk:');
-    }
+    }*/
 })
 
 //Envoie un MP souhaitant la bienvenue à un nouveau membre du Discord
@@ -52,5 +100,5 @@ bot.on('message', message => {
 
 
 
-
-bot.login('NTU2MjE5NTIxNDk3ODI1Mjkw.D220wQ.gETpaOdnnUIg7fMSCXxCxARs1zw');
+// Bot's token (required for the bot to connect to Discord servers where he's been added)
+bot.login(TOKEN);
