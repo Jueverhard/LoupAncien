@@ -12,13 +12,12 @@ client.commands.set("react", require("./commands/react.js"));
 client.commands.set("refresh", require("./commands/refresh.js"));
 
 // Let us know once the client is up and running
+// Also assign Omega role on rules' reading
 client.on("ready", () => require("./events/ready")(client));
 // Does specific actions in reactions to specific messages
 client.on("message", msg => require("./events/message.js")(client, msg));
 // Welcome any new member on the server and remind him to look at the rules
 client.on("guildMemberAdd", member => require("./events/guildMemberAdd.js")(client, member));
-// Assign roles on reactions
-client.on("messageReactionAdd", (reaction, user) => require("./events/messageReactionAdd.js")(client, reaction, user));
 
 
 
