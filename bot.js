@@ -27,10 +27,8 @@ client.commands.set("gvganswer", require("./commands/gvganswer"));
 
 // Let us know once the client is up and running
 client.on("ready", () => require("./events/ready")(client));
-// Assign Omega role on rules' reading
-client.on("ready", () => require("./events/assignOmegaRole")(client));
 // Assign GvG roles on every Sunday at 10PM
-client.on("ready", () => require("./events/assignGvGRole")(client));
+// client.on("ready", () => require("./events/assignGvGRole")(client));
 // Does specific actions in reactions to specific messages
 client.on("message", msg => require("./events/message")(client, msg));
 // Welcome any new member on the server and remind him to look at the rules
