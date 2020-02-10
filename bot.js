@@ -1,6 +1,7 @@
 const { Client, Collection } = require("discord.js");
-const client = new Client();
+const tools = require("./functions.js");
 
+const client = new Client();
 const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID} = require("./config");
 
 client.PREFIX = PREFIX;
