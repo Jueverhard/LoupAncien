@@ -1,5 +1,6 @@
 const { Client, Collection } = require("discord.js");
 const client = new Client();
+
 const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID} = require("./config");
 
 client.PREFIX = PREFIX;
@@ -33,6 +34,10 @@ client.on("ready", () => require("./events/assignGvGRole")(client));
 client.on("message", msg => require("./events/message")(client, msg));
 // Welcome any new member on the server and remind him to look at the rules
 client.on("guildMemberAdd", member => require("./events/guildMemberAdd")(client, member));
+// Add role based on the added reaction
+client.on("messageReactionAdd", (reaction, user) => require("./events/messageReactionAdd")(client, reaction, user, tools));
+// Remove role based on the removed reaction
+client.on("messageReactionRemove", (reaction, user) => require("./events/messageReactionRemove")(client, reaction, user, tools));
 
 
 
