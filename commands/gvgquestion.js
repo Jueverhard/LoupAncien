@@ -21,6 +21,7 @@ module.exports = (client, message) => {
     chan.send(embed).then(async msg => {
       await msg.react(yesAnswer);
       await msg.react(noAnswer);
+      await msg.pin();
     })
   })
 };
