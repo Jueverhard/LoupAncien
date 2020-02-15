@@ -27,5 +27,13 @@ module.exports = {
 				}
 			}			
 		})
+	},
+
+	fetchMessage: function(client, chanelID, messageID) {
+		client.channels.fetch(chanelID).then(chan => {
+			chan.messages.fetch(messageID).then(
+				console.log("Message cached")
+			)
+		})
 	}
 };
