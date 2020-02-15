@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 var moment = require("moment");
 
 module.exports = (client, message) => {
-  message.delete({ timeout: 5000 });
+  message.delete({ timeout: 1000 });
 
   if (message.author.id !== "283298934766436355") return;
   const yesAnswer = '✅';
@@ -13,7 +13,7 @@ module.exports = (client, message) => {
   const embed = new MessageEmbed()
     .setTitle(`Qui veut participer aux GvG de la semaine du ${date1} au ${date2} ?`)
     .setDescription("@everyone Comme prévu, voici le message hebdomadaire pour vous incrire aux prochaines Guerres de Guilde !")
-    .addField("Si tu es dispo prêt à te battre, clique sur : ", yesAnswer)
+    .addField("Si tu es dispo et prêt à te battre, clique sur : ", yesAnswer)
     .addField("Si non, clique sur : ", noAnswer)
     .setFooter(`Vous avez jusqu'au ${date3} à 22h pour répondre.`);
 
