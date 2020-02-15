@@ -2,6 +2,7 @@ const { MessageEmbed } = require("discord.js");
 var moment = require("moment");
 
 module.exports = (client) => {
+  console.log("gvgQuestionOnMonday lancé");
   setInterval(() => {   // Run the following code once every day
     console.log("Vérification du moment() pour savoir s'il faut gvgQuestion");
     if (moment().format('dddd') == "Monday") {
