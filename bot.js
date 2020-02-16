@@ -2,7 +2,7 @@ const { Client, Collection } = require("discord.js");
 const tools = require("./functions.js");
 
 const client = new Client();
-const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID} = require("./config");
+const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID} = require("./config");
 
 client.PREFIX = PREFIX;
 client.DamnedWolvesServerID = DamnedWolvesServerID;
@@ -13,17 +13,25 @@ client.RulesMsgID = RulesMsgID;
 client.OmegaRoleID = OmegaRoleID;
 client.GvGRoleID = GvGRoleID;
 client.NoGvGRoleID = NoGvGRoleID;
-
+client.MazeChanelID = MazeChanelID;
 
 client.commands = new Collection();
+// Replies pong
 client.commands.set("ping", require("./commands/ping"));
+// Send a message and react to it
 client.commands.set("react", require("./commands/react"));
+// Takes one argument to determine what is to be refreshed (omega | gvg)
+// Ex : ${PREFIX}refresh omega
 client.commands.set("refresh", require("./commands/refresh"));
+// Takes arguments that the bot will repeat
+// Ex : "${PREFIX}repeat coucou c'est moi :D" => the bot will say "coucou c'est moi :D"
 client.commands.set("repeat", require("./commands/repeat"));
 // Send an MessageEmbed to ask members whether they want to do GvG
 client.commands.set("gvgquestion", require("./commands/gvgquestion"));
 // Look at the right EmbedMessage to tell who want to fight and who do not
 client.commands.set("gvganswer", require("./commands/gvganswer"));
+// Remind everyone to help in Tartarus maze
+client.commands.set("laby", require("./commands/laby"));
 
 // Let us know once the client is up and running
 client.on("ready", () => require("./events/ready")(client, tools));
