@@ -2,7 +2,7 @@ const { Client, Collection } = require("discord.js");
 const tools = require("./functions.js");
 
 const client = new Client();
-const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID} = require("./config");
+const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID} = require("./config");
 
 client.PREFIX = PREFIX;
 client.DamnedWolvesServerID = DamnedWolvesServerID;
@@ -14,9 +14,10 @@ client.OmegaRoleID = OmegaRoleID;
 client.GvGRoleID = GvGRoleID;
 client.NoGvGRoleID = NoGvGRoleID;
 client.MazeChanelID = MazeChanelID;
+client.moreThanOmegaMembersID = moreThanOmegaMembersID;
 
 client.commands = new Collection();
-// Replies pong
+// Replies pong then deletes it (mainly used for debugging purposes)
 client.commands.set("ping", require("./commands/ping"));
 // Send a message and react to it
 client.commands.set("react", require("./commands/react"));
@@ -42,7 +43,7 @@ client.on("ready", () => require("./events/gvgAnswerOnSundayTenPM")(client));
 // Send inscription message on Monday (any hour)
 client.on("ready", () => require("./events/gvgQuestionOnMonday")(client));
 // Does specific actions in reactions to specific messages
-client.on("message", msg => require("./events/message")(client, msg));
+client.on("message", msg => require("./events/message")(client, msg, tools));
 // Welcome any new member on the server and remind him to look at the rules
 client.on("guildMemberAdd", member => require("./events/guildMemberAdd")(client, member));
 // Add role based on the added reaction

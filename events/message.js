@@ -1,8 +1,10 @@
-module.exports = (client, message) => {
+module.exports = (client, message, tools) => {
   // Ne réagis pas si l'auteur du message est un bot
   if (message.author.bot) return;
   // Ne réagis pas si le préfixe ne se situe pas au début du message
   if (message.content.indexOf(client.PREFIX) !== 0) return;
+  // Ne réagis pas si l'auteur du message n'est ni Liv, ni Anca, ni Jue
+  if (!client.moreThanOmegaMembersID.some(e => e == message.author.id)) return;
 
   // Récupère chaque argument dans un tableau et supprime le préfixe
   // ex : "${PREFIX}cmd lol mdr" => {"cmd", "lol", "mdr"}
