@@ -4,7 +4,7 @@ var moment = require("moment");
 module.exports = (client) => {
   console.log("gvgQuestionOnMonday lancé");
   setInterval(() => {   // Run the following code once every day
-    console.log("Vérification du moment() pour savoir s'il faut gvgQuestion");
+    console.log(`Vérification du moment() pour savoir s'il faut gvgQuestion : ${moment()}`);
     if (moment().format('dddd') == "Monday") {
       const yesAnswer = '✅';
       const noAnswer = '❌';

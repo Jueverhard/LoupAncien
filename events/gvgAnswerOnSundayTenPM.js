@@ -4,7 +4,7 @@ var moment = require("moment");
 module.exports = (client) => {
   console.log("gvgAnswerOnSundayTenPM lancé");
   setInterval(() => {   // Run the following code once every hour
-    console.log("Vérification du moment() pour savoir s'il faut gvgAnswer");
+    console.log(`Vérification du moment() pour savoir s'il faut gvgAnswer : ${moment()}`);
     if (moment().format('dddd H') == "Sunday 22") {
       const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
       const GvGRole = serverDamnedWolves.roles.get(client.GvGRoleID);
