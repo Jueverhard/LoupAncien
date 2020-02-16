@@ -41,7 +41,7 @@ module.exports = (client, message) => {
                   if (usersCollection.some(u => u.id === m.user.id)) {
                     if (!m.roles.find(r => r === GvGRole)) m.roles.add(GvGRole);
                     if (m.roles.find(r => r === NoGvGRole)) m.roles.remove(NoGvGRole);
-                    gvgMembers.push(m.user.username);
+                    gvgMembers.push(m.displayName);
                   }
                 }
               })
@@ -52,7 +52,7 @@ module.exports = (client, message) => {
                   if (usersCollection.some(u => u.id === m.user.id)) {
                     if (!m.roles.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
                     if (m.roles.find(r => r === GvGRole)) m.roles.remove(GvGRole);
-                    noGvgMembers.push(m.user.username);
+                    noGvgMembers.push(m.displayName);
                   }
                 }
               })
