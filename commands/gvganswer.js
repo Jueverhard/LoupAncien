@@ -4,7 +4,6 @@ var moment = require("moment");
 module.exports = (client, message) => {
   message.delete({ timeout: 1000 });
 
-  if (message.author.id !== "283298934766436355") return;
   const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
   const GvGRole = serverDamnedWolves.roles.get(client.GvGRoleID);
   const NoGvGRole = serverDamnedWolves.roles.get(client.NoGvGRoleID);
@@ -14,6 +13,8 @@ module.exports = (client, message) => {
   var gvgMembers = [];
   var noGvgMembers = [];
 
+  // Attend 5sec avant d'exécuter le code suivant
+  // pour donner le temps aux rôles d'être accordés et à gvgMembers et noGvgMembers d'être remplis
   setTimeout(function(){
     gvgMembers = gvgMembers.filter(m => m != "Loup ancien");
     noGvgMembers = noGvgMembers.filter(m => m != "Loup ancien");
