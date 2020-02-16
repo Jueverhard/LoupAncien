@@ -1,4 +1,5 @@
 module.exports = {
+	// Grant the role of id roleID from the user of id userID
 	addRole: function(client, userID, roleID) {
 		const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
 		const role = serverDamnedWolves.roles.get(roleID);
@@ -14,6 +15,7 @@ module.exports = {
 		})
 	},
 
+	// Remove the role of id roleID from the user of id userID
 	removeRole: function(client, userID, roleID) {
 		const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
 		const role = serverDamnedWolves.roles.get(roleID);
@@ -25,15 +27,28 @@ module.exports = {
 						m.send(`Tu n'as plus le rôle ${role.name} !`);
 					}
 				}
-			}			
+			}		
 		})
 	},
 
+	// Put the message of id messageID and in the chanel of id chanelID in cache
 	fetchMessage: function(client, chanelID, messageID) {
 		client.channels.fetch(chanelID).then(chan => {
 			chan.messages.fetch(messageID).then(
 				console.log("Message cached")
 			)
 		})
-	}
+	}//,
+
+	// Cannot use for the moment, didn't figured out yet how to wait for the function to have done its job
+	// getHighestRoleIDOf(client, userID){
+	// 	const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
+	// 	serverDamnedWolves.members.fetch().then(membersCollection => {
+	// 		for (m of membersCollection.values()) {
+	// 			if (m.user.id === userID) {
+	// 				return new Promise(m.roles.highest.id);
+	// 			}
+	// 		}
+	// 	})
+	// }
 };
