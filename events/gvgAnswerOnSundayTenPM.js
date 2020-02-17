@@ -15,6 +15,15 @@ module.exports = (client) => {
       var gvgMembers = [];
       var noGvgMembers = [];
 
+      // Remove any GvG-relative role(s) from every members before anything
+      serverDamnedWolves.members.fetch().then(membersCollection => {
+        for (m of membersCollection.values()) {
+          if (m.roles.find(r => r === GvGRole)) tools.removeRole(GvGRole);
+          if (m.roles.find(r => r === NoGvGRole)) tools.removeRole(NoGvGRole);
+        }
+      })
+
+
       setTimeout(function(){
         gvgMembers = gvgMembers.filter(m => m != "Loup ancien");
         noGvgMembers = noGvgMembers.filter(m => m != "Loup ancien");
@@ -40,7 +49,6 @@ module.exports = (client) => {
                     for (m of membersCollection.values()) {
                       if (usersCollection.some(u => u.id === m.user.id)) {
                         if (!m.roles.find(r => r === GvGRole)) m.roles.add(GvGRole);
-                        if (m.roles.find(r => r === NoGvGRole)) m.roles.remove(NoGvGRole);
                         gvgMembers.push(m.displayName);
                       }
                     }
@@ -51,7 +59,6 @@ module.exports = (client) => {
                     for (m of membersCollection.values()) {
                       if (usersCollection.some(u => u.id === m.user.id)) {
                         if (!m.roles.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
-                        if (m.roles.find(r => r === GvGRole)) m.roles.remove(GvGRole);
                         noGvgMembers.push(m.displayName);
                       }
                     }
