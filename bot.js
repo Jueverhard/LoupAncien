@@ -2,13 +2,14 @@ const { Client, Collection } = require("discord.js");
 const tools = require("./functions.js");
 
 const client = new Client();
-const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID, unauthorizedMembersID} = require("./config");
+const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID, unauthorizedMembersID, TestCommandesChanelID} = require("./config");
 
 client.PREFIX = PREFIX;
 client.DamnedWolvesServerID = DamnedWolvesServerID;
 client.RulesChanelID = RulesChanelID;
 client.GvGChanelID = GvGChanelID;
 client.LogsChanelID = LogsChanelID;
+client.TestCommandesChanelID = TestCommandesChanelID;
 client.RulesMsgID = RulesMsgID;
 client.OmegaRoleID = OmegaRoleID;
 client.GvGRoleID = GvGRoleID;
