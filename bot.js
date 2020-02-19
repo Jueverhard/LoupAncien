@@ -37,7 +37,7 @@ client.commands.set("gvganswer", require("./commands/gvganswer"));
 // Remind everyone to help in Tartarus maze
 client.commands.set("laby", require("./commands/laby"));
 // Reming the members with GvG role to attack
-client.commands.set("attack", require("./commands/attack"));
+client.commands.set("gvg", require("./commands/gvg"));
 
 // Let us know once the client is up and running
 client.on("ready", () => require("./events/ready")(client, tools));

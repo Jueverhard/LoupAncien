@@ -7,9 +7,9 @@ module.exports = (client, message) => {
               '-"**!help**" : Liste les commandes reconnues par le bot (c\'est-à-dire envoie ce message) ;\n' +
               '-"**!refresh omega**" : Met à jour les rôles Omega selon les personnes ayant réagis au message des règles ;\n' +
               '-"**!repeat *et là tu peux dire un peu ce que tu veux***" : Fait répéter au bot ce qui suit le "repeat" ;\n' +
-              '-"**!attack**" : Envoie un message dans le salon **guerre-de-guilde** pour rappeler aux membres y participant ' +
+              '-"**!gvg**" : Envoie un message dans le salon **guerre-de-guilde** pour rappeler aux membres y participant ' +
               'de faire leurs attaques ;\n' +
-              '-"**!attack *un_nom* *un_autre_nom***" : Envoie un message privé aux membres listés pour leur rappeler de ' +
+              '-"**!gvg *un_nom* *un_autre_nom***" : Envoie un message privé aux membres listés pour leur rappeler de ' +
               'faire leurs attaques en Guerre de Guilde. Vous pouvez mettre autant de noms que vous voulez ;\n' +
               '-"**!laby**" : Envoie un message dans le salon **exploration-du-labyrinthe**, notifiant tous les membres ' +
               'et leur rappelant d\'utiliser leurs lanternes dans le labyrinthe ;\n' +
