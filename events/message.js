@@ -18,7 +18,7 @@ module.exports = (client, message) => {
     if (message.author.id == "283298934766436355") user = "Jueverhard"
     if (message.author.id == "140872188218703872") user = "Ancalyx"
     if (message.author.id == "245636942136475650") user = "Liveli"
-    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${user} a utilisé la commande suivante : \"${message}\"`));
+    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${user} a utilisé la commande **${message}** dans le salon **${message.channel.name}**`));
   }
   
   // Retire le premier élément (la commande) du tableau et la renvoie sous forme minuscule
