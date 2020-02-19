@@ -3,7 +3,8 @@ var moment = require("moment");
 
 module.exports = (client, message) => {
   message.delete({ timeout: 1000 });
-
+  if (moment().format('dddd') != "Sunday") return;
+  if (moment().format('H') < 22) return;
   const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
   const GvGRole = serverDamnedWolves.roles.get(client.GvGRoleID);
   const NoGvGRole = serverDamnedWolves.roles.get(client.NoGvGRoleID);
@@ -21,12 +22,12 @@ module.exports = (client, message) => {
     const embed = new MessageEmbed()
       .setTitle(`Suite aux réponses des membres pour les GvG de la semaine du ${date1} au ${date2}, vos rôles ont été mis à jour`)
       .setDescription("Ceux qui souhaitent participer ont désormais le rôle GvG\nCeux qui ne le veulent pas ou ne sont pas disponibles ont, eux, le rôle NoGvG")
-      .addField("N'oubliez pas de faire vos attaques tous les ", GvGRole);
     if (gvgMembers.length > 0) embed.addField("GvG : ", gvgMembers);
     if (noGvgMembers.length > 0) embed.addField("NoGvG : ", noGvgMembers)
 
     client.channels.fetch(client.GvGChanelID).then(chan => {
       chan.send(embed);
+      chan.send(`N'oubliez pas de faire vos attaques tous les ${GvGRole} !`)
     });
   }, 5000);
 
