@@ -43,7 +43,7 @@ client.on("ready", () => require("./events/gvgAnswerOnSundayTenPM")(client));
 // Send inscription message on Monday (any hour)
 client.on("ready", () => require("./events/gvgQuestionOnMonday")(client));
 // Does specific actions in reactions to specific messages
-client.on("message", msg => require("./events/message")(client, msg, tools));
+client.on("message", msg => require("./events/message")(client, msg));
 // Welcome any new member on the server and remind him to look at the rules
 client.on("guildMemberAdd", member => require("./events/guildMemberAdd")(client, member));
 // Add role based on the added reaction
