@@ -13,6 +13,8 @@ module.exports = (client, message) => {
               'faire leurs attaques en Guerre de Guilde. Vous pouvez mettre autant de noms que vous voulez ;\n' +
               '-"**!laby**" : Envoie un message dans le salon **exploration-du-labyrinthe**, notifiant tous les membres ' +
               'et leur rappelant d\'utiliser leurs lanternes dans le labyrinthe ;\n' +
+              '-"**!laby *un_nom* *un_autre_nom***" : Envoie un message privé aux membres listés pour leur rappeler ' +
+              'd\'utiliser leurs lanternes dans le labyrinthe ;\n' +
               '-"**!gvganswer**" : Disponible uniquement le Dimanche soir à partir de 22h, permet de mettre à jour les rôles ' +
               'GVG (et NoGVG) et liste les personnes souhaitant participer aux Guerre de Guilde et la semaine à venir.';
 
