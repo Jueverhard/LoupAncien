@@ -11,11 +11,16 @@ module.exports = (client, message) => {
   // Récupère chaque argument dans un tableau et supprime le préfixe
   // ex : "${PREFIX}cmd lol mdr" => {"cmd", "lol", "mdr"}
   const args = message.content.slice(client.PREFIX.length).trim().split(/ +/g);
-  user = null;
-  if (message.author.id == "283298934766436355") user = "Jueverhard"
-  if (message.author.id == "140872188218703872") user = "Ancalyx"
-  if (message.author.id == "245636942136475650") user = "Liveli"
-  client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${user} a utilisé la commande suivante : \"${message}\"`));
+
+  // Prend note de la commande dans le salon "logs" si elle n'a pas été faite dans le salon "test-commandes"
+  if (message.channel.id != client.TestCommandesChanelID) {
+    user = null;
+    if (message.author.id == "283298934766436355") user = "Jueverhard"
+    if (message.author.id == "140872188218703872") user = "Ancalyx"
+    if (message.author.id == "245636942136475650") user = "Liveli"
+    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${user} a utilisé la commande suivante : \"${message}\"`));
+  }
+  
   // Retire le premier élément (la commande) du tableau et la renvoie sous forme minuscule
   // ex : args = {"CmD", "lol", "mdr"} ; cmd = {} => args = {lol", "mdr"} ; cmd = "cmd"
   const command = args.shift().toLowerCase();
