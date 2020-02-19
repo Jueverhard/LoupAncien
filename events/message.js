@@ -5,6 +5,8 @@ module.exports = (client, message) => {
   if (message.content.indexOf(client.PREFIX) !== 0) return;
   // Ne réagis pas si l'auteur du message n'est ni Liveli, ni Ancalyx, ni Jueverhard
   if (!client.moreThanOmegaMembersID.some(e => e == message.author.id)) return;
+  // Ne réagis pas si l'ID de l'auteur du message est listé dans les unauthorizedMembersID
+  if (client.unauthorizedMembersID.some(e => e == message.author.id)) return;
 
   // Récupère chaque argument dans un tableau et supprime le préfixe
   // ex : "${PREFIX}cmd lol mdr" => {"cmd", "lol", "mdr"}
