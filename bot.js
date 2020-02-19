@@ -2,7 +2,7 @@ const { Client, Collection } = require("discord.js");
 const tools = require("./functions.js");
 
 const client = new Client();
-const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID} = require("./config");
+const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID, unauthorizedMembersID} = require("./config");
 
 client.PREFIX = PREFIX;
 client.DamnedWolvesServerID = DamnedWolvesServerID;
@@ -15,8 +15,11 @@ client.GvGRoleID = GvGRoleID;
 client.NoGvGRoleID = NoGvGRoleID;
 client.MazeChanelID = MazeChanelID;
 client.moreThanOmegaMembersID = moreThanOmegaMembersID;
+client.unauthorizedMembersID = unauthorizedMembersID;
 
 client.commands = new Collection();
+// Listes available commands with explanations on how to use them
+client.commands.set("help", require("./commands/help"));
 // Replies pong then deletes it (mainly used for debugging purposes)
 client.commands.set("ping", require("./commands/ping"));
 // Send a message and react to it
