@@ -25,8 +25,8 @@ module.exports = (client) => {
 
 
       setTimeout(function(){
-        gvgMembers = gvgMembers.filter(m => m != "Loup ancien");
-        noGvgMembers = noGvgMembers.filter(m => m != "Loup ancien");
+        // gvgMembers = gvgMembers.filter(m => m != "Amarok");
+        // noGvgMembers = noGvgMembers.filter(m => m != "Amarok");
         const embed = new MessageEmbed()
           .setTitle(`Suite aux réponses des membres pour les GvG de la semaine du ${date1} au ${date2}, vos rôles ont été mis à jour`)
           .setDescription("Ceux qui souhaitent participer ont désormais le rôle GvG\nCeux qui ne le veulent pas ou ne sont pas disponibles ont, eux, le rôle NoGvG")
@@ -47,6 +47,7 @@ module.exports = (client) => {
                 msg.reactions.resolve('✅').users.fetch().then(usersCollection => {
                   serverDamnedWolves.members.fetch().then(membersCollection => {
                     for (m of membersCollection.values()) {
+                      if (m.displayName === "Amarok") continue;
                       if (usersCollection.some(u => u.id === m.user.id)) {
                         if (!m.roles.find(r => r === GvGRole)) m.roles.add(GvGRole);
                         gvgMembers.push(m.displayName);
@@ -57,6 +58,7 @@ module.exports = (client) => {
                 msg.reactions.resolve('❌').users.fetch().then(usersCollection => {
                   serverDamnedWolves.members.fetch().then(membersCollection => {
                     for (m of membersCollection.values()) {
+                      if (m.displayName === "Amarok") continue;
                       if (usersCollection.some(u => u.id === m.user.id)) {
                         if (!m.roles.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
                         noGvgMembers.push(m.displayName);
