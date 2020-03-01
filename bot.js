@@ -43,7 +43,7 @@ client.commands.set("gvg", require("./commands/gvg"));
 // Let us know once the client is up and running
 client.on("ready", () => require("./events/ready")(client, tools));
 // Assign GvG roles on every Sunday at 10PM
-client.on("ready", () => require("./events/gvgAnswerOnSundayTenPM")(client));
+client.on("ready", () => require("./events/gvgAnswerOnSundayTenPM")(client, tools));
 // Send inscription message on Monday (any hour)
 client.on("ready", () => require("./events/gvgQuestionOnMonday")(client));
 // Does specific actions in reactions to specific messages
