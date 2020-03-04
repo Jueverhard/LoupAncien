@@ -25,6 +25,7 @@ module.exports = (client, message, args) => {
         else {
           serverDamnedWolves.members.fetch(name[1]).then(m => {
             if (m._roles.some(r => r === client.GvGRoleID)) {
+              console.log(`Envoi d'un message de laby à ${m.displayName}`);
               m.send("Salut jeune loup mal léché, alors comme ça on n'a pas encore fait ses attaques en Guerre de Guilde ? Tu as de la chance que je sois là pour te le rappeler, parce que les Alphas ... *brr* :fearful: :cold_face:\n...\n...\nVa pas t'amuser à répéter ce que je t'ai dit hein, je le saurais !")
             } else {
               missingGvGRoleMembers += `${m.displayName} `;

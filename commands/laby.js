@@ -20,11 +20,12 @@ module.exports = (client, message, args) => {
         // Look for a name that includes the argument passed as parameter to the command
         name = membersNames.find(n => n[0].toLowerCase().includes(arg.toLowerCase()))
         if (name === undefined) {
-          undefinedMembers += `${arg} `
+          undefinedMembers += `${arg} `;
         }
         else {
           serverDamnedWolves.members.fetch(name[1]).then(m => {
-            m.send("Alors comme ça, on se fait désirer ? On fait la fine bouche sur l'utilisation des lanternes ?\nNon non non non non, ça ne va pas du tout ça ... Va donc faire un tour dans le labyrinthe de Tartaros, le reste de la meute a besoin de ton aide !")
+            console.log(`Envoi d'un message de laby à ${m.displayName}`);
+            m.send("Alors comme ça, on se fait désirer ? On fait la fine bouche sur l'utilisation des lanternes ?\nNon non non non non, ça ne va pas du tout ça ... Va donc faire un tour dans le labyrinthe de Tartaros, le reste de la meute a besoin de ton aide !");
           })
         }
       }
