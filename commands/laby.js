@@ -26,6 +26,9 @@ module.exports = (client, message, args) => {
           serverDamnedWolves.members.fetch(name[1]).then(m => {
             console.log(`Envoi d'un message de laby à ${m.displayName}`);
             m.send("Alors comme ça, on se fait désirer ? On fait la fine bouche sur l'utilisation des lanternes ?\nNon non non non non, ça ne va pas du tout ça ... Va donc faire un tour dans le labyrinthe de Tartaros, le reste de la meute a besoin de ton aide !");
+            client.channels.fetch(client.LogsChanelID).then(chan => {
+              chan.send(`J'ai envoyé un MP pour le labyrinthe à **${m.displayName}** !`)
+            })
           })
         }
       }
