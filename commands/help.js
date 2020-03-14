@@ -6,7 +6,8 @@ module.exports = (client, message) => {
               "connecté. Servez-vous-en avec bienveillance ou vous ne pourrez plus vous en servir !\n\n" +
               '-"**!help**" : Liste les commandes reconnues par le bot (c\'est-à-dire envoie ce message) ;\n' +
               '-"**!refresh omega**" : Met à jour les rôles Omega selon les personnes ayant réagis au message des règles ;\n' +
-              '-"**!repeat *et_là_tu_peux_dire_un_peu_ce_que_tu_veux***" : Fait répéter au bot ce qui suit le "repeat" ;\n' +
+              '-"**!repeat *nom_d\'un_channel* *et_là_tu_peux_dire_un_peu_ce_que_tu_veux***" : Fait répéter au bot, dans le ' +
+              'channel indiqué (ou dans le channel du message si *here*) ce qui suit le nom du channel ;\n' +
               '-"**!gvg**" : Envoie un message dans le salon **guerre-de-guilde** pour rappeler aux membres y participant ' +
               'de faire leurs attaques ;\n' +
               '-"**!gvg *un_nom* *un_autre_nom***" : Envoie un message privé aux membres listés pour leur rappeler de ' +
