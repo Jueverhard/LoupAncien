@@ -1,8 +1,8 @@
 module.exports = (client, message, args) => {
   message.delete({ timeout: 1000});
   const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
-
-  if (args[0] === "omega") {
+  whatToRefresh = args.shift();
+  if (whatToRefresh === "omega") {
     const omegaRole = serverDamnedWolves.roles.get(client.OmegaRoleID);
 
     client.channels.fetch(client.RulesChanelID).then(c => {
