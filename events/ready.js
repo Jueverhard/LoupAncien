@@ -10,9 +10,11 @@ module.exports = (client, tools) => {
     chan.messages.fetch(msg => msg.pinned && msg.footer.text === `Vous avez jusqu'au ${date} à 22h pour répondre.`).then(msg => {
       console.log("GvG question message is now cached :)");
     })
-  })
-
-  for (r of client.guilds.resolve(client.DamnedWolvesServerID).roles.values()) {
-    console.log(r.name);
-  }
+  });
+  client.guilds.resolve(client.DamnedWolvesServerID).roles.each(role => {
+    console.log(`Rôle ${role.name} visité`);
+  });
+  client.guilds.resolve(client.DamnedWolvesServerID).channels.each(chan => {
+    console.log(`Channel ${chan.name} visité`);
+  });
 };
