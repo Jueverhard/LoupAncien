@@ -1,1 +1,0 @@
-Corriger les fonctions addRole et removeRole dans functions.js
