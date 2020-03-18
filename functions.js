@@ -1,9 +1,8 @@
 module.exports = {
 	// Grant the role of id roleID from the user of id userID
 	addRole: function(client, userID, roleID) {
-		const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
-		const role = serverDamnedWolves.roles.get(roleID);
-		serverDamnedWolves.members.fetch().then(membersCollection => {
+		const role = client.guilds.resolve(client.DamnedWolvesServerID).roles.get(roleID);
+		client.guilds.resolve(client.DamnedWolvesServerID).members.fetch().then(membersCollection => {
 			for (m of membersCollection.values()) {
 				if (m.user.id === userID) {
 					if (!m.roles.find(r => r === role)) {
@@ -17,9 +16,8 @@ module.exports = {
 
 	// Remove the role of id roleID from the user of id userID
 	removeRole: function(client, userID, roleID) {
-		const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
-		const role = serverDamnedWolves.roles.get(roleID);
-		serverDamnedWolves.members.fetch().then(membersCollection => {
+		const role = client.guilds.resolve(client.DamnedWolvesServerID).roles.get(roleID);
+		client.guilds.resolve(client.DamnedWolvesServerID).members.fetch().then(membersCollection => {
 			for (m of membersCollection.values()) {
 				if (m.user.id === userID) {
 					if (m.roles.find(r => r === role)) {
@@ -38,17 +36,5 @@ module.exports = {
 				console.log("Message cached")
 			)
 		})
-	}//,
-
-	// Cannot use for the moment, didn't figured out yet how to wait for the function to have done its job
-	// getHighestRoleIDOf(client, userID){
-	// 	const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
-	// 	serverDamnedWolves.members.fetch().then(membersCollection => {
-	// 		for (m of membersCollection.values()) {
-	// 			if (m.user.id === userID) {
-	// 				return new Promise(m.roles.highest.id);
-	// 			}
-	// 		}
-	// 	})
-	// }
+	}
 };
