@@ -11,4 +11,8 @@ module.exports = (client, tools) => {
       console.log("GvG question message is now cached :)");
     })
   })
+
+  for (r of client.guilds.resolve(client.DamnedWolvesServerID).roles.values()) {
+    console.log(r.name);
+  }
 };
