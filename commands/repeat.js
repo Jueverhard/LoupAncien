@@ -3,14 +3,11 @@ module.exports = (client, message, args) => {
   if (chanToSend == "here") {
     message.channel.send(args.join(" "));
   } else {
-    chanCollection = client.channels.values();
-    setTimeout(function(){
-      for (chan of chanCollection) {
-        if (chan.name.toLowerCase().includes(chanToSend)) {
-          chan.send(args.join(" "));
-        }
+    client.channels.each(chan => {
+      if (chan.name.toLowerCase().includes(chanToSend)) {
+        chan.send(args.join(" "));
       }
-    }, 1000);
+    });
   }
   message.delete({ timeout: 1000});
 };
