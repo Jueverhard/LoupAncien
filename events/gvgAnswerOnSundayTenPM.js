@@ -29,8 +29,8 @@ module.exports = (client, tools) => {
               msg.reactions.resolve('✅').users.fetch().then(usersCollection => {
                 client.guilds.resolve(client.DamnedWolvesServerID).members.fetch().then(membersCollection => {
                   membersCollection.each(m => {
-                    if (m.user.id === client.BotID) continue;
-                    if (usersCollection.some(u => u.id === m.user.id)) {
+                    if (m.user.id === client.BotID) {}
+                    else if (usersCollection.some(u => u.id === m.user.id)) {
                       if (!m.roles.find(r => r === GvGRole)) m.roles.add(GvGRole);
                       gvgMembers.push(m.displayName);
                     }
@@ -40,8 +40,8 @@ module.exports = (client, tools) => {
               msg.reactions.resolve('❌').users.fetch().then(usersCollection => {
                 client.guilds.resolve(client.DamnedWolvesServerID).members.fetch().then(membersCollection => {
                   membersCollection.each(m => {
-                    if (m.user.id === client.BotID) continue;
-                    if (usersCollection.some(u => u.id === m.user.id)) {
+                    if (m.user.id === client.BotID) {}
+                    else if (usersCollection.some(u => u.id === m.user.id)) {
                       if (!m.roles.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
                       noGvgMembers.push(m.displayName);
                     }
