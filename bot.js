@@ -37,8 +37,11 @@ client.commands.set("gvgquestion", require("./commands/gvgquestion"));
 client.commands.set("gvganswer", require("./commands/gvganswer"));
 // Remind everyone to help in Tartarus maze
 client.commands.set("laby", require("./commands/laby"));
-// Reming the members with GvG role to attack
+// Remind the members with GvG role to attack
 client.commands.set("gvg", require("./commands/gvg"));
+
+// Used to test things during development
+client.commands.set("test", require("./commands/test"));
 
 // Let us know once the client is up and running
 client.on("ready", () => require("./events/ready")(client, tools));
