@@ -65,7 +65,7 @@ module.exports = (client, tools) => {
 
         client.channels.fetch(client.GvGChanelID).then(chan => {
           chan.send(embed);
-          chan.send(`N'oubliez pas de faire vos attaques, on vous attend en ${GvGRole} !`)
+          chan.send(`Pensez à faire vos attaques sans qu'on n'ait trop à vous le rappeler svp, on vous attend en ${GvGRole} !:muscle:`)
         });
       }, 5000);
     }
