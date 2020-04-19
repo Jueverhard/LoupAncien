@@ -1,4 +1,4 @@
-module.exports = (client, message) => {
+module.exports = (client, message, queue, ytdl) => {
   // Ne réagis pas si l'auteur du message est un bot
   if (message.author.bot) return;
   // Ne réagis pas si le préfixe ne se situe pas au début du message
@@ -13,12 +13,8 @@ module.exports = (client, message) => {
   const args = message.content.slice(client.PREFIX.length).trim().split(/ +/g);
 
   // Prend note de la commande dans le salon "logs" si elle n'a pas été faite dans le salon "test-commandes"
-  if (message.channel.id != client.TestCommandesChanelID) {
-    user = null;
-    if (message.author.id == "283298934766436355") user = "Jueverhard"
-    if (message.author.id == "140872188218703872") user = "Ancalyx"
-    if (message.author.id == "245636942136475650") user = "Liveli"
-    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${user} a utilisé la commande **${message}** dans le salon **${message.channel.name}**`));
+  if (message.channel.id != client.TestCommandesChanelID && message.channel.id != client.TestLogsChanelID) {
+    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${message.author.username} a utilisé la commande **${message}** dans le salon **${message.channel.name}**`));
   }
   
   // Retire le premier élément (la commande) du tableau et la renvoie sous forme minuscule
@@ -26,5 +22,8 @@ module.exports = (client, message) => {
   const command = args.shift().toLowerCase();
 
   // Si "command" appartient à client.commands, alors son code est appelé
-  if (client.commands.has(command)) client.commands.get(command)(client, message, args);
+  if (client.commands.has(command)) {
+      client.commands.get(command)(client, message, args);
+    }
+  }
 };

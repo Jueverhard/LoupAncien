@@ -4,6 +4,7 @@ const tools = require("./functions.js");
 const client = new Client();
 const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID, unauthorizedMembersID, TestCommandesChanelID, TestLogsChanelID, BotID} = require("./config");
 
+
 client.PREFIX = PREFIX;
 client.DamnedWolvesServerID = DamnedWolvesServerID;
 client.RulesChanelID = RulesChanelID;
@@ -59,7 +60,6 @@ client.on("guildMemberAdd", member => require("./events/guildMemberAdd")(client,
 client.on("messageReactionAdd", (reaction, user) => require("./events/messageReactionAdd")(client, reaction, user, tools));
 // Remove role based on the removed reaction
 client.on("messageReactionRemove", (reaction, user) => require("./events/messageReactionRemove")(client, reaction, user, tools));
-
 
 
 // Bot's token (required for the client to connect to Discord servers where he's been added)
