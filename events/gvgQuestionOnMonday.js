@@ -13,12 +13,13 @@ module.exports = (client) => {
       const date3 = moment().add(7, 'days').startOf('isoweek').subtract(1, 'days').format('DD/MM');
       const embed = new MessageEmbed()
         .setTitle(`Qui veut participer aux GvG de la semaine du ${date1} au ${date2} ?`)
-        .setDescription("@everyone Comme prévu, voici le message hebdomadaire pour vous incrire aux prochaines Guerres de Guilde !")
+        .setDescription("Comme prévu, voici le message hebdomadaire pour vous incrire aux prochaines Guerres de Guilde ! Pensez à vérifier les règles de mise quant aux défenses attendues ou au nombre de points bonus maximum, par exemple ^^")
         .addField("Si tu es dispo et prêt à te battre, clique sur : ", yesAnswer)
-        .addField("Si non, clique sur : ", noAnswer)
+        .addField("Sinon, clique sur : ", noAnswer)
         .setFooter(`Vous avez jusqu'au ${date3} à 22h pour répondre.`);
 
       client.channels.fetch(client.GvGChanelID).then(chan => {
+        chan.send("@everyone Les inscriptions pour les Guerres de Guilde de la prochaine semaine sont ouvertes !");
         chan.send(embed).then(async msg => {
           await msg.react(yesAnswer);
           await msg.react(noAnswer);

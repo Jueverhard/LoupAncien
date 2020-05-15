@@ -1,4 +1,4 @@
-module.exports = (client, message, queue, ytdl) => {
+module.exports = (client, message) => {
   // Ne réagis pas si l'auteur du message est un bot
   if (message.author.bot) return;
   // Ne réagis pas si le préfixe ne se situe pas au début du message
@@ -22,8 +22,5 @@ module.exports = (client, message, queue, ytdl) => {
   const command = args.shift().toLowerCase();
 
   // Si "command" appartient à client.commands, alors son code est appelé
-  if (client.commands.has(command)) {
-      client.commands.get(command)(client, message, args);
-    }
-  }
+  if (client.commands.has(command)) client.commands.get(command)(client, message, args);
 };

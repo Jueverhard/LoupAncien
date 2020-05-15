@@ -17,8 +17,8 @@ module.exports = (client, tools) => {
       // Remove any GvG-relative role(s) from every members before anything
       client.guilds.resolve(client.DamnedWolvesServerID).members.fetch().then(membersCollection => {
         for (m of membersCollection.values()) {
-          if (m.roles.find(r => r === GvGRole)) tools.removeRole(GvGRole);
-          if (m.roles.find(r => r === NoGvGRole)) tools.removeRole(NoGvGRole);
+          if (m.roles.find(r => r === GvGRole)) m.roles.remove(GvGRole);
+          if (m.roles.find(r => r === NoGvGRole)) m.roles.remove(NoGvGRole);
         }
       });
 

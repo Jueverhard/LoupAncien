@@ -3,10 +3,12 @@ var moment = require("moment");
 
 module.exports = (client, message) => {
   message.delete({ timeout: 1000 });
-  if (moment().format('dddd') != "Sunday") return;
-  if (moment().format('H') < 22) return;
-  const GvGRole = client.guilds.resolve(client.DamnedWolvesServerID).roles.get(client.GvGRoleID);
-  const NoGvGRole = client.guilds.resolve(client.DamnedWolvesServerID).roles.get(client.NoGvGRoleID);
+  // if (moment().format('dddd') != "Sunday") return;
+  // if (moment().format('H') < 22) return;
+
+  const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
+  const GvGRole = serverDamnedWolves.roles.cache.get(client.GvGRoleID);
+  const NoGvGRole = serverDamnedWolves.roles.cache.get(client.NoGvGRoleID);
   const date1 = moment().add(7, 'days').startOf('isoweek').format('DD/MM');
   const date2 = moment().add(7, 'days').startOf('isoweek').add(5, 'days').format('DD/MM');
   const date3 = moment().add(7, 'days').startOf('isoweek').subtract(1, 'days').format('DD/MM');
@@ -14,44 +16,49 @@ module.exports = (client, message) => {
   var noGvgMembers = [];
 
   // Remove any GvG-relative role(s) from every members before anything
-  client.guilds.resolve(client.DamnedWolvesServerID).members.fetch().then(membersCollection => {
+  serverDamnedWolves.members.fetch().then(membersCollection => {
     for (m of membersCollection.values()) {
-      if (m.roles.find(r => r === GvGRole)) tools.removeRole(GvGRole);
-      if (m.roles.find(r => r === NoGvGRole)) tools.removeRole(NoGvGRole);
+      if (m.roles.cache.find(r => r === GvGRole)) m.roles.remove(GvGRole);
+      if (m.roles.cache.find(r => r === NoGvGRole)) m.roles.remove(NoGvGRole);
     }
   });
 
+
   client.channels.fetch(client.GvGChanelID).then(chan => {
-    chan.messages.each(msg => {
-      if (msg.pinned && msg.embeds.length == 1) {
-        if (msg.embeds[0].footer.text === `Vous avez jusqu'au ${date3} à 22h pour répondre.`) {
-          msg.reactions.resolve('✅').users.fetch().then(usersCollection => {
-            client.guilds.resolve(client.DamnedWolvesServerID).members.fetch().then(membersCollection => {
-              membersCollection.each(m => {
-                if (m.user.id === client.BotID) {}
-                else if (usersCollection.some(u => u.id === m.user.id)) {
-                  if (!m.roles.find(r => r === GvGRole)) m.roles.add(GvGRole);
-                  gvgMembers.push(m.displayName);
+    chan.messages.fetchPinned().then(pinnedMessages => {
+      for(msg of pinnedMessages.values()) {
+        if (msg.embeds.length == 1) {
+          if (msg.embeds[0].footer.text === `Vous avez jusqu'au ${date3} à 22h pour répondre.`) {
+            msg.reactions.resolve('✅').users.fetch().then(usersCollection => {
+              serverDamnedWolves.members.fetch().then(membersCollection => {
+                for (m of membersCollection.values()) {
+                  if (m.user.id === client.BotID) continue;
+                  if (usersCollection.values().some(u => u.id === m.user.id)) {
+                    if (!m.roles.cache.find(r => r === GvGRole)) m.roles.add(GvGRole);
+                    gvgMembers.push(m.displayName);
+                  }
                 }
               })
-            })
-          })
-          msg.reactions.resolve('❌').users.fetch().then(usersCollection => {
-            client.guilds.resolve(client.DamnedWolvesServerID).members.fetch().then(membersCollection => {
-              membersCollection.each(m => {
-                if (m.user.id === client.BotID) {}
-                else if (usersCollection.some(u => u.id === m.user.id)) {
-                  if (!m.roles.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
-                  noGvgMembers.push(m.displayName);
+            });
+            msg.reactions.resolve('❌').users.fetch().then(usersCollection => {
+              serverDamnedWolves.members.fetch().then(membersCollection => {
+                for (m of membersCollection.values()) {
+                  if (m.user.id === client.BotID) continue;
+                  if (usersCollection.values().some(u => u.id === m.user.id)) {
+                    if (!m.roles.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
+                    noGvgMembers.push(m.displayName);
+                  }
                 }
               })
-            })
-          })
-          msg.unpin();
+            });
+            // msg.unpin();
+            console.log(gvgMembers)
+          }
         }
       }
     })
   });
+
 
   // Attend 5sec avant d'exécuter le code suivant
   // pour donner le temps aux rôles d'être accordés et à gvgMembers et noGvgMembers d'être remplis
@@ -62,9 +69,9 @@ module.exports = (client, message) => {
     if (gvgMembers.length > 0) embed.addField("Les loups qui ce sont inscrits et sur qui la meute compte cette semaine sont :", gvgMembers);
     if (noGvgMembers.length > 0) embed.addField("Les loups trop occupés pour faire la guerre sont : ", noGvgMembers);
 
-    client.channels.fetch(client.GvGChanelID).then(chan => {
-      chan.send(embed);
-      chan.send(`Pensez à faire vos attaques sans qu'on n'ait trop à vous le rappeler svp, on vous attend en ${GvGRole} !:muscle:`)
+    client.channels.fetch(client.LogsChanelID).then(chan => {
+      // chan.send(embed);
+      // chan.send(`Pensez à faire vos attaques sans qu'on n'ait trop à vous le rappeler svp, on vous attend en ${GvGRole} !:muscle:`)
     });
   }, 5000);
 };

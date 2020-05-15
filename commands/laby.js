@@ -3,7 +3,7 @@ module.exports = (client, message, args) => {
   const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
   if (args.length === 0) {
     client.channels.fetch(client.MazeChanelID).then(chan => {
-      chan.send("Le Labyrinthe de Tartaros est en cours, la meute a besoin de l'aide d'@everyone ! Venez vous battre pour avancer dans l'exploration du Labyrinthe :muscle: De beaux trésors nous attendent une fois le gros tas de cailloux mis en pièces :christmas_tree:");
+      chan.send("Le Labyrinthe de Tartaros est en cours, la meute a besoin de l'aide d'@everyone ! Venez vous battre pour avancer dans l'exploration du Labyrinthe :muscle: De beaux trésors nous attendent une fois le gros tas de cailloux mis en pièces :gift::christmas_tree:\n\n*Psst, tapez, mais pas n'importe où s'il-vous-plaît*");
     });
   }
   else {
