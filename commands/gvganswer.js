@@ -16,12 +16,12 @@ module.exports = (client, message) => {
   var noGvgMembers = [];
 
   // Remove any GvG-relative role(s) from every members before anything
-  serverDamnedWolves.members.fetch().then(membersCollection => {
-    for (m of membersCollection.values()) {
-      if (m.roles.cache.find(r => r === GvGRole)) m.roles.remove(GvGRole);
-      if (m.roles.cache.find(r => r === NoGvGRole)) m.roles.remove(NoGvGRole);
-    }
-  });
+  // serverDamnedWolves.members.fetch().then(membersCollection => {
+  //   for (m of membersCollection.values()) {
+  //     if (m.roles.cache.find(r => r === GvGRole)) m.roles.remove(GvGRole);
+  //     if (m.roles.cache.find(r => r === NoGvGRole)) m.roles.remove(NoGvGRole);
+  //   }
+  // });
 
 
   client.channels.fetch(client.GvGChanelID).then(chan => {
@@ -29,6 +29,15 @@ module.exports = (client, message) => {
       for(msg of pinnedMessages.values()) {
         if (msg.embeds.length == 1) {
           if (msg.embeds[0].footer.text === `Vous avez jusqu'au ${date3} à 22h pour répondre.`) {
+            console.log(msg.reactions)
+            if (msg.reactions && msg.reactions.length > 0) {
+              for (const reaction of msg.reactions) {
+                console.log(msg);
+                console.log(reaction);
+                // this.reactions.add(reaction);
+              }
+            }
+            /*
             msg.reactions.resolve('✅').users.fetch().then(usersCollection => {
               serverDamnedWolves.members.fetch().then(membersCollection => {
                 for (m of membersCollection.values()) {
@@ -51,6 +60,7 @@ module.exports = (client, message) => {
                 }
               })
             });
+            */
             // msg.unpin();
             console.log(gvgMembers)
           }
