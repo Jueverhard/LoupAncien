@@ -42,6 +42,8 @@ client.commands.set("gvganswer", require("./commands/gvganswer"));
 client.commands.set("laby", require("./commands/laby"));
 // Remind the members with GvG role to attack
 client.commands.set("gvg", require("./commands/gvg"));
+// Reply with a link towards BJ5 validation sheet
+client.commands.set("bj5", require("./commands/bj5"));
 
 // Used to test things during development
 client.commands.set("test", require("./commands/test"));
