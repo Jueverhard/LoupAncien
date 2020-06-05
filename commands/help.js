@@ -1,7 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = (client, message) => {
-  message.delete({ timeout: 1000});
   let texte = "Ce message détaille les différentes commandes reconnues par le bot et utilisables lorsque celui-ci est " +
               "connecté. Servez-vous-en avec bienveillance ou vous ne pourrez plus vous en servir !\n\n" +
               `-"**${client.PREFIX}help**" : Liste les commandes reconnues par le bot (c\'est-à-dire envoie ce message) ;\n` +
@@ -21,11 +20,12 @@ module.exports = (client, message) => {
               `GVG (et NoGVG) et liste les personnes souhaitant participer aux Guerre de Guilde et la semaine à venir.`;
 
   const embed = new MessageEmbed()
-    .setTitle("Commandes reconnues par Amarok")
+    .setTitle(`Commandes reconnues par Amarok`)
     .setDescription(texte)
-    .setFooter("Attention, cette liste est sujette à changements et peut ne pas être à jour au moment où vous lisez ce message ! Contactez Jueverhard pour plus d'informations :)")
-  client.channels.fetch(client.LogsChanelID).then(chan => {
-    chan.send(`Salut ${message.author}, tu veux savoir ce que je sais faire ? Voici donc !`);
-    chan.send(embed);
-  });
+    .setFooter(`Attention, cette liste est sujette à changements et peut ne pas être à jour au moment où vous lisez ce message ! Contactez Jueverhard pour plus d'informations :)`)
+    
+  message.channel.send(`Salut ${message.author}, tu veux savoir ce que je sais faire ? Voici donc !`);
+  message.channel.send(embed);
+
+  message.delete({ timeout: 1000});
 };
