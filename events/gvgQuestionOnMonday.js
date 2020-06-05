@@ -24,6 +24,7 @@ module.exports = (client) => {
           await msg.react(yesAnswer);
           await msg.react(noAnswer);
           await msg.pin();
+          client.GvGQuestionMsgID = msg.id;
         })
       })
     }

@@ -23,6 +23,7 @@ module.exports = (client, message) => {
       await msg.react(yesAnswer);
       await msg.react(noAnswer);
       await msg.pin();
+      client.GvGQuestionMsgID = msg.id;
     })
   })
 };
