@@ -5,6 +5,7 @@ module.exports = (client, message) => {
   let texte = "Ce message détaille les différentes commandes reconnues par le bot et utilisables lorsque celui-ci est " +
               "connecté. Servez-vous-en avec bienveillance ou vous ne pourrez plus vous en servir !\n\n" +
               `-"**${client.PREFIX}help**" : Liste les commandes reconnues par le bot (c\'est-à-dire envoie ce message) ;\n` +
+              `-"**${client.PREFIX}bj5**" : Fournit un tableur permettant de vérifier la validité de sa team BJ5 ;\n` +
               `-"**${client.PREFIX}refresh omega**" : Met à jour les rôles Omega selon les personnes ayant réagis au message des règles ;\n` +
               `-"**${client.PREFIX}repeat *nom_d\'un_channel* *et_là_tu_peux_dire_un_peu_ce_que_tu_veux***" : Fait répéter au bot, dans le ` +
               `channel indiqué (ou dans le channel du message si *here*) ce qui suit le nom du channel ;\n` +
