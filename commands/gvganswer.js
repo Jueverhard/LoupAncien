@@ -11,7 +11,6 @@ module.exports = (client, message) => {
   const NoGvGRole = serverDamnedWolves.roles.cache.get(client.NoGvGRoleID);
   const date1 = moment().add(7, 'days').startOf('isoweek').format('DD/MM');
   const date2 = moment().add(7, 'days').startOf('isoweek').add(5, 'days').format('DD/MM');
-  const date3 = moment().add(7, 'days').startOf('isoweek').subtract(1, 'days').format('DD/MM');
   var gvgMembers = [];
   var noGvgMembers = [];
 
