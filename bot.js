@@ -2,7 +2,7 @@ const { Client, Collection } = require("discord.js");
 const tools = require("./functions.js");
 
 const client = new Client();
-const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID, unauthorizedMembersID, TestCommandesChanelID, TestLogsChanelID, BotID} = require("./config");
+const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID, unauthorizedMembersID, TestCommandesChanelID, TestLogsChanelID, BotID, harmlessCommands} = require("./config");
 
 
 client.PREFIX = PREFIX;
@@ -21,6 +21,7 @@ client.moreThanOmegaMembersID = moreThanOmegaMembersID;
 client.unauthorizedMembersID = unauthorizedMembersID;
 client.TestLogsChanelID = TestLogsChanelID;
 client.BotID = BotID;
+client.harmlessCommands = harmlessCommands;
 
 client.commands = new Collection();
 // Listes available commands with explanations on how to use them

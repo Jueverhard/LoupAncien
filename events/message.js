@@ -3,8 +3,6 @@ module.exports = (client, message) => {
   if (message.author.bot) return;
   // Ne réagis pas si le préfixe ne se situe pas au début du message
   if (message.content.indexOf(client.PREFIX) !== 0) return;
-  // Ne réagis pas si l'auteur du message n'est ni Liveli, ni Ancalyx, ni Jueverhard
-  if (!client.moreThanOmegaMembersID.some(e => e == message.author.id)) return;
   // Ne réagis pas si l'ID de l'auteur du message est listé dans les unauthorizedMembersID
   if (client.unauthorizedMembersID.some(e => e == message.author.id)) return;
 
@@ -20,6 +18,9 @@ module.exports = (client, message) => {
   // Retire le premier élément (la commande) du tableau et la renvoie sous forme minuscule
   // ex : args = {"CmD", "lol", "mdr"} ; cmd = {} => args = {lol", "mdr"} ; cmd = "cmd"
   const command = args.shift().toLowerCase();
+
+  // Ne réagis pas si l'auteur du message n'est ni Liveli, ni Ancalyx, ni Jueverhard, sauf si la commande est innocente
+  if (!client.moreThanOmegaMembersID.some(e => e == message.author.id) && !client.harmlessCommands.some(cmd => cmd == command)) return;
 
   // Si "command" appartient à client.commands, alors son code est appelé
   if (client.commands.has(command)) client.commands.get(command)(client, message, args);
