@@ -12,6 +12,7 @@ client.GvGChanelID = GvGChanelID;
 client.LogsChanelID = LogsChanelID;
 client.TestCommandesChanelID = TestCommandesChanelID;
 client.RulesMsgID = RulesMsgID;
+client.GvGQuestionMsgID = 1;
 client.OmegaRoleID = OmegaRoleID;
 client.GvGRoleID = GvGRoleID;
 client.NoGvGRoleID = NoGvGRoleID;
