@@ -40,7 +40,7 @@ module.exports = (client, tools) => {
               for (m of membersCollection.values()) {
                 if (m.user.id === client.BotID) continue;
                 if (usersCollection.some(u => u.id === m.user.id)) {
-                  if (!m.roles.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
+                  if (!m.roles.cache.find(r => r === NoGvGRole)) m.roles.add(NoGvGRole);
                   noGvgMembers.push(m.displayName);
                 }
               }
@@ -58,7 +58,7 @@ module.exports = (client, tools) => {
           .setDescription("Ceux qui souhaitent participer ont désormais le rôle GvG.\nCeux qui ne le veulent pas ou ne sont pas disponibles ont, eux, le rôle NoGvG.")
         if (gvgMembers.length > 0) embed.addField("Les loups qui ce sont inscrits et sur qui la meute compte cette semaine sont :", gvgMembers);
         if (noGvgMembers.length > 0) embed.addField("Les loups trop occupés pour faire la guerre sont : ", noGvgMembers);
-        client.channels.fetch(client.LogsChanelID).then(chan => {
+        client.channels.fetch(client.GvGChanelID).then(chan => {
           chan.send(embed);
           chan.send(`Pensez à faire vos attaques sans qu'on n'ait trop à vous le rappeler svp, on vous attend en ${GvGRole} !:muscle:`)
         });
