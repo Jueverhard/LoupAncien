@@ -61,8 +61,10 @@ module.exports = (client, message) => {
     if (gvgMembers.length > 0) embed.addField("Les loups qui ce sont inscrits et sur qui la meute compte cette semaine sont :", gvgMembers);
     if (noGvgMembers.length > 0) embed.addField("Les loups trop occupés pour faire la guerre sont : ", noGvgMembers);
     client.channels.fetch(client.GvGChanelID).then(chan => {
-      chan.send(embed);
-      chan.send(`Pensez à faire vos attaques sans qu'on n'ait trop à vous le rappeler svp, on vous attend en ${GvGRole} !:muscle:`)
+      if (gvgMembers.length > 0) {
+        chan.send(embed);
+        chan.send(`Pensez à faire vos attaques sans qu'on n'ait trop à vous le rappeler svp, on vous attend en ${GvGRole} !:muscle:`)
+      }
     });
   }, 5000);
 };
