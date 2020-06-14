@@ -16,6 +16,7 @@ module.exports = (client, tools) => {
         if (msg.embeds.length == 1) {
           if (msg.embeds[0].footer.text === `Vous avez jusqu'au ${date} à 22h pour répondre.`) {
             client.GvGQuestionMsgID = msg.id;
+            console.log(`ID du message de gvgquestion : ${client.GvGQuestionMsgID}`)
           }
         }
       }
