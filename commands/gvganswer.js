@@ -60,11 +60,12 @@ module.exports = (client, message) => {
       .setDescription("Ceux qui souhaitent participer ont désormais le rôle GvG.\nCeux qui ne le veulent pas ou ne sont pas disponibles ont, eux, le rôle NoGvG.")
     if (gvgMembers.length > 0) embed.addField("Les loups qui ce sont inscrits et sur qui la meute compte cette semaine sont :", gvgMembers);
     if (noGvgMembers.length > 0) embed.addField("Les loups trop occupés pour faire la guerre sont : ", noGvgMembers);
-    client.channels.fetch(client.GvGChanelID).then(chan => {
-      if (gvgMembers.length > 0) {
+    embed.addFooter("S'il y a moins de 10 inscrits, des personnes n'ayant pas demander à ne pas participer seront ajoutées pour compléter.");
+    if (gvgMembers.length > 0) {
+      client.channels.fetch(client.GvGChanelID).then(chan => {
         chan.send(embed);
         chan.send(`Pensez à faire vos attaques sans qu'on n'ait trop à vous le rappeler svp, on vous attend en ${GvGRole} !:muscle:`)
-      }
-    });
+      });
+    }
   }, 5000);
 };
