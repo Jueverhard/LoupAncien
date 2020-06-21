@@ -26,8 +26,8 @@ module.exports = (client, message) => {
     .setDescription(texte)
     .setFooter(`Attention, cette liste est sujette à changements et peut ne pas être à jour au moment où vous lisez ce message ! Contactez Jueverhard pour plus d'informations :)`)
     
-  message.channel.send(`Salut ${message.author}, tu veux savoir ce que je sais faire ? Voici donc !`);
-  message.channel.send(embed);
+  // message.author.send(`Salut ${message.author}, tu veux savoir ce que je sais faire ? Voici donc !`);
+  message.author.send(embed);
 
   message.delete({ timeout: 1000});
 };
