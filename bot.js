@@ -56,10 +56,12 @@ client.on("ready", () => require("./events/ready")(client, tools));
 client.on("ready", () => require("./events/gvgAnswerOnSundayTenPM")(client, tools));
 // Send inscription message on Monday (any hour)
 client.on("ready", () => require("./events/gvgQuestionOnMonday")(client));
-// Does specific actions in reactions to specific messages
+// Do specific actions in reactions to specific messages
 client.on("message", msg => require("./events/message")(client, msg));
 // Welcome any new member on the server and remind him to look at the rules
 client.on("guildMemberAdd", member => require("./events/guildMemberAdd")(client, member));
+// Remove the reactions from this user on specific messages
+client.on("guildMemberRemove", member => require("./events/guildMemberRemove")(client, member));
 // Add role based on the added reaction
 client.on("messageReactionAdd", (reaction, user) => require("./events/messageReactionAdd")(client, reaction, user, tools));
 // Remove role based on the removed reaction
