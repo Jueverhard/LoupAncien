@@ -1,10 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 
 module.exports = (client, message) => {
-
   const description = "Ce message détaille les différentes commandes reconnues par le bot et utilisables lorsque celui-ci est " +
               "connecté. Servez-vous-en avec bienveillance, ou vous ne pourrez plus vous en servir !";
-
   const commands = {
     "public" : [
       {
@@ -87,7 +85,6 @@ module.exports = (client, message) => {
     }
   }
   
-    
   message.author.send(embed);
 
   message.delete({ timeout: 1000});
