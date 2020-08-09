@@ -4,7 +4,28 @@ const tools = require("./functions.js");
 const client = new Client();
 const { TOKEN, PREFIX, DamnedWolvesServerID, GvGChanelID, RulesChanelID, LogsChanelID, RulesMsgID, OmegaRoleID, GvGRoleID, NoGvGRoleID, MazeChanelID, moreThanOmegaMembersID, unauthorizedMembersID, TestCommandesChanelID, TestLogsChanelID, BotID, harmlessCommands} = require("./config");
 
-
+const attr_list = [
+  "TOKEN",
+  "PREFIX",
+  "DamnedWolvesServerID",
+  "GvGChanelID",
+  "RulesChanelID",
+  "LogsChanelID",
+  "RulesMsgID",
+  "OmegaRoleID",
+  "GvGRoleID",
+  "NoGvGRoleID",
+  "MazeChanelID",
+  "moreThanOmegaMembersID",
+  "unauthorizedMembersID",
+  "TestCommandesChanelID",
+  "TestLogsChanelID",
+  "BotID",
+  "harmlessCommands"
+];
+// for(attr of attr_list){
+//   client.attr = attr;
+// }
 client.PREFIX = PREFIX;
 client.DamnedWolvesServerID = DamnedWolvesServerID;
 client.RulesChanelID = RulesChanelID;
@@ -23,34 +44,27 @@ client.TestLogsChanelID = TestLogsChanelID;
 client.BotID = BotID;
 client.harmlessCommands = harmlessCommands;
 
+const commands = [
+  "help",           // List available commands with explanations on how to use them
+  "ping",           // Reply pong then delete it (mainly used for debugging purposes)
+  "react",          // Send a message and react to it
+  "refresh",        // Take one argument to determine what is to be refreshed || Ex : ${PREFIX}refresh omega
+  "repeat",         // Take arguments that the bot will repeat || Ex : "${PREFIX}repeat coucou c'est moi :D" => the bot will say "coucou c'est moi :D"
+  "gvgquestion",    // Send an MessageEmbed to ask members whether they want to do GvG
+  "gvganswer",      // Look at the right EmbedMessage to tell who want to fight and who do not
+  "laby",           // Remind everyone to help in Tartarus maze
+  "gvg",            // Remind the members with GvG role to attack
+  "bj5",            // Reply with a link towards BJ5 validation sheet
+  "sdtoday"         // List the openable secret dungeons this day
+];
+
 client.commands = new Collection();
-// Listes available commands with explanations on how to use them
-client.commands.set("help", require("./commands/help"));
-// Replies pong then deletes it (mainly used for debugging purposes)
-client.commands.set("ping", require("./commands/ping"));
-// Send a message and react to it
-client.commands.set("react", require("./commands/react"));
-// Takes one argument to determine what is to be refreshed (omega | gvg)
-// Ex : ${PREFIX}refresh omega
-client.commands.set("refresh", require("./commands/refresh"));
-// Takes arguments that the bot will repeat
-// Ex : "${PREFIX}repeat coucou c'est moi :D" => the bot will say "coucou c'est moi :D"
-client.commands.set("repeat", require("./commands/repeat"));
-// Send an MessageEmbed to ask members whether they want to do GvG
-client.commands.set("gvgquestion", require("./commands/gvgquestion"));
-// Look at the right EmbedMessage to tell who want to fight and who do not
-client.commands.set("gvganswer", require("./commands/gvganswer"));
-// Remind everyone to help in Tartarus maze
-client.commands.set("laby", require("./commands/laby"));
-// Remind the members with GvG role to attack
-client.commands.set("gvg", require("./commands/gvg"));
-// Reply with a link towards BJ5 validation sheet
-client.commands.set("bj5", require("./commands/bj5"));
-// List the openable secret dungeons this day
-client.commands.set("sdtoday", require("./commands/sdtoday"));
+for(cmd of commands){
+  client.commands.set(cmd, require(`./commands/${cmd}`));
+}
 
 // Used to test things during development
-client.commands.set("test", require("./commands/test"));
+// client.commands.set("test", require("./commands/test"));
 
 // Let us know once the client is up and running
 client.on("ready", () => require("./events/ready")(client, tools));
