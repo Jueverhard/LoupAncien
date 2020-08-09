@@ -1,7 +1,9 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, MessageAttachment } = require("discord.js");
 var moment = require("moment");
 
 module.exports = (client, message) => {
+  
+
   const sd_list = {
     "Light" : [
       "Bearman",
@@ -87,8 +89,7 @@ module.exports = (client, message) => {
       "Viking",
       "Yéti"
     ],
-  }
-
+  };
   const sd_rotation = {
     "Monday" : ["Dark"],
     "Tuesday" : ["Fire"],
@@ -97,15 +98,26 @@ module.exports = (client, message) => {
     "Friday" : ["Dark", "Light", "Fire", "Water", "Wind"],
     "Saturday" : ["Dark", "Light", "Fire", "Water", "Wind"],
     "Sunday" : ["Light"]
-  }
+  };
+  const elements = {
+    "Light" : "#ffffb3",
+    "Dark" : "#800040",
+    "Fire" : "#ff0000",
+    "Water" : "#008ae6",
+    "Wind" : "#ccff33"
+  };
 
-  const today = moment().format('dddd');
-  const embed = new MessageEmbed()
-    .setTitle("Voici la liste des donjons secrets ouverts aujourd'hui");
+  const today = moment().format('dddd');      // Used to gather the today day
+  // const today = "Friday";                  // Used to test whenever there are several elements
   for (element of sd_rotation[today]){
-    embed.addField(element, sd_list[element]);
+    const elementImg = new MessageAttachment(`C:/Users/Julien/Desktop/Travaux/Perso/Loup ancien/images/${element}.png`);
+    const embed = new MessageEmbed()
+      .setTitle(`Voici la liste des donjons secrets ouverts aujourd'hui`)
+      .addField(element, sd_list[element])
+      .setColor(elements[element])
+      .attachFiles(elementImg)
+      .setThumbnail(`attachment://${element}.png`);
+    message.channel.send(embed);
   }
-
-  message.channel.send(embed);
   message.delete({ timeout: 1000});
 };
