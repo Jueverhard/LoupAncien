@@ -2,6 +2,7 @@ var moment = require("moment");
 
 module.exports = (client, tools) => {
   console.log("I'm there !");
+  client.user.setActivity("?help");
   client.GvGQuestionMsgID;
   const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
   const date = moment().add(7, 'days').startOf('isoweek').subtract(1, 'days').format('DD/MM');
