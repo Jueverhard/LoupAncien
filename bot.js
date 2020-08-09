@@ -46,6 +46,8 @@ client.commands.set("laby", require("./commands/laby"));
 client.commands.set("gvg", require("./commands/gvg"));
 // Reply with a link towards BJ5 validation sheet
 client.commands.set("bj5", require("./commands/bj5"));
+// List the openable secret dungeons this day
+client.commands.set("sdtoday", require("./commands/sdtoday"));
 
 // Used to test things during development
 client.commands.set("test", require("./commands/test"));

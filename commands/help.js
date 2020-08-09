@@ -3,7 +3,8 @@ const { MessageEmbed } = require("discord.js");
 module.exports = (client, message) => {
   let texte = "Ce message détaille les différentes commandes reconnues par le bot et utilisables lorsque celui-ci est " +
               "connecté. Servez-vous-en avec bienveillance ou vous ne pourrez plus vous en servir !\n\n" +
-              `-"**${client.PREFIX}bj5**" : Fournit un tableur permettant de vérifier la validité de sa team BJ5 ;\n`;
+              `-"**${client.PREFIX}bj5**" : Fournit un tableur permettant de vérifier la validité de sa team BJ5 ;\n` +
+              `-"**${client.PREFIX}sdtoday**" : Liste les donjons secrets disponibles le jour-même ;\n`;
   if (client.moreThanOmegaMembersID.some(e => e == message.author.id)) {
     texte +=  `-"**${client.PREFIX}refresh omega**" : Met à jour les rôles Omega selon les personnes ayant réagis au message des règles ;\n` +
               `-"**${client.PREFIX}repeat *nom_d\'un_channel* *et_là_tu_peux_dire_un_peu_ce_que_tu_veux***" : Fait répéter au bot, dans le ` +
@@ -26,7 +27,6 @@ module.exports = (client, message) => {
     .setDescription(texte)
     .setFooter(`Attention, cette liste est sujette à changements et peut ne pas être à jour au moment où vous lisez ce message ! Contactez Jueverhard pour plus d'informations :)`)
     
-  // message.author.send(`Salut ${message.author}, tu veux savoir ce que je sais faire ? Voici donc !`);
   message.author.send(embed);
 
   message.delete({ timeout: 1000});
