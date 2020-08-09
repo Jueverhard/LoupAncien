@@ -66,7 +66,7 @@ module.exports = (client, message) => {
     .setFooter(`Attention, cette liste est sujette à changements et peut ne pas être à jour au moment où vous lisez ce message ! Contactez Jueverhard pour plus d'informations :)`);
 
   for(command of commands.public){
-    let cmd = `**${client.PREFIX}${command.name}`;
+    let cmd = `- **${client.PREFIX}${command.name}`;
     for(arg of command.args){
       cmd += ` *${arg}*`;
     }
@@ -76,7 +76,7 @@ module.exports = (client, message) => {
 
   if (client.moreThanOmegaMembersID.some(e => e == message.author.id)) {
     for(command of commands.private){
-      let cmd = `**${client.PREFIX}${command.name}`;
+      let cmd = `- **${client.PREFIX}${command.name}`;
       for(arg of command.args){
         cmd += ` *${arg}*`;
       }
