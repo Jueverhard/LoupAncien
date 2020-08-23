@@ -73,5 +73,6 @@ module.exports = (client, message, args) => {
   }
   else if (args.length === 1) {
     client.GvGQuestionMsgID = args[0];
+    console.log(`ID du message de gvgquestion : ${client.GvGQuestionMsgID}`)
   }
 };
