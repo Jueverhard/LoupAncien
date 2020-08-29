@@ -16,6 +16,11 @@ module.exports = (client, message) => {
         "description" : "Liste les donjons secrets disponibles le jour-même"
       },
       {
+        "name" : "code",
+        "args" : ["un_code"],
+        "description" : "Renvoie le code ainsi que le lien permettant d'en profiter"
+      },
+      {
         "name" : "help",
         "args" : [],
         "description" : "Liste les commandes reconnues par le bot (c\'est-à-dire envoie ce message)"
