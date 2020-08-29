@@ -1,5 +1,8 @@
+var moment = require("moment");
+
 module.exports = (client, message, args) => {
   message.delete({ timeout: 1000});
+  if (moment().format('dddd') == "Sunday") return;
   const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
   if (args.length === 0) {
     const GvGRole = serverDamnedWolves.roles.cache.get(client.GvGRoleID);
