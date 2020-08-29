@@ -55,7 +55,8 @@ const commands = [
   "laby",           // Remind everyone to help in Tartarus maze
   "gvg",            // Remind the members with GvG role to attack
   "bj5",            // Reply with a link towards BJ5 validation sheet
-  "sd"              // List the openable secret dungeons this day
+  "sd",             // List the openable secret dungeons this day
+  "code"            // Give the code with its iOS version
 ];
 
 client.commands = new Collection();
