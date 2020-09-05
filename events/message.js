@@ -10,9 +10,13 @@ module.exports = (client, message) => {
   // ex : "${PREFIX}cmd lol mdr" => {"cmd", "lol", "mdr"}
   const args = message.content.slice(client.PREFIX.length).trim().split(/ +/g);
 
+  if(message.channel.type === "dm") {
+    message.reply("Je n'aime pas les messes basses, viens me dire ça dans un des salons du serveur de la guilde ! :grin:");
+    return;
+  }
   // Prend note de la commande dans le salon "logs" si elle n'a pas été faite dans le salon "test-commandes"
   if (message.channel.id != client.TestCommandesChanelID && message.channel.id != client.TestLogsChanelID) {
-    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${message.author.username} a utilisé la commande **${message}** dans le salon **${message.channel.name}**`));
+    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${message.member.username} a utilisé la commande **${message}** dans le salon **${message.channel.name}**`));
   }
   
   // Retire le premier élément (la commande) du tableau et la renvoie sous forme minuscule
