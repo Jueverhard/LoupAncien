@@ -16,7 +16,7 @@ module.exports = (client, message) => {
   }
   // Prend note de la commande dans le salon "logs" si elle n'a pas été faite dans le salon "test-commandes"
   if (message.channel.id != client.TestCommandesChanelID && message.channel.id != client.TestLogsChanelID) {
-    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${message.member.username} a utilisé la commande **${message}** dans le salon **${message.channel.name}**`));
+    client.channels.fetch(client.LogsChanelID).then(chan => chan.send(`${message.member.displayName} a utilisé la commande **${message}** dans le salon **${message.channel.name}**`));
   }
   
   // Retire le premier élément (la commande) du tableau et la renvoie sous forme minuscule
