@@ -13,7 +13,7 @@ module.exports = (client) => {
       const date3 = moment().add(7, 'days').startOf('isoweek').subtract(1, 'days').format('DD/MM');
       const embed = new MessageEmbed()
         .setTitle(`Qui veut participer aux GvG de la semaine du ${date1} au ${date2} ?`)
-        .setDescription("Comme prévu, voici le message hebdomadaire pour vous incrire aux prochaines Guerres de Guilde ! Pensez à vérifier les règles de mise quant aux défenses attendues ou au nombre de points bonus maximum, par exemple ^^")
+        .setDescription("Comme prévu, voici le message hebdomadaire pour vous incrire aux prochaines Guerres de Guilde ! Pensez à vérifier les règles en vigueur quant aux défenses attendues ou au nombre de points bonus maximum, par exemple ^^")
         .addField("Si tu es dispo et prêt à te battre, clique sur : ", yesAnswer)
         .addField("Sinon, clique sur : ", noAnswer)
         .setFooter(`Vous avez jusqu'au ${date3} à 22h pour répondre. S'il y a moins de 10 inscrits, des personnes n'ayant pas demander à ne pas participer seront ajoutées pour compléter.`);
