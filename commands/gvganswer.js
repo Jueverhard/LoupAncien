@@ -6,7 +6,7 @@ module.exports = (client, message, args) => {
 
   if (args.length === 0) {
     if (moment().format('dddd') != "Sunday") return;
-    if (moment().format('H') < 22) return;
+    if (moment().format('H') < 21) return;
 
     const serverDamnedWolves = client.guilds.resolve(client.DamnedWolvesServerID);
     const GvGRole = serverDamnedWolves.roles.cache.get(client.GvGRoleID);
