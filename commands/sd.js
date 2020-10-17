@@ -110,7 +110,15 @@ module.exports = (client, message) => {
   const today = moment().format('dddd');      // Used to gather the today day
   // const today = "Friday";                  // Used to test whenever there are several elements
   for (element of sd_rotation[today]){
-    const elementImg = new MessageAttachment(`C:/Users/Julien/Desktop/Travaux/Perso/Loup ancien/images/${element}.png`);
+    let elementImg = "";
+    try {
+      // Path for the images on Windows
+      elementImg = new MessageAttachment(`D:/Travaux/Perso/Loup ancien/images/${element}.png`);
+    } catch {
+      // Path for the images on Ubuntu
+      elementImg = new MessageAttachment(`/mnt/storage/Travaux/Perso/Loup ancien/images/${element}.png`);
+    }
+    
     const embed = new MessageEmbed()
       .setTitle(`Voici la liste des donjons secrets ouverts aujourd'hui`)
       .addField(element, sd_list[element])
